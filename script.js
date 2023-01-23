@@ -36,24 +36,26 @@ function checkAll(e) {
   if (in1 === in2 && in1.length !== 0) {
     equal.innerText = right;
 
-    for (let letter of in1) {
-      if (!isNaN(letter) && letter !== " ") {
-        num.innerText = right;
-      } else {
-        if (letter.toLowerCase() === letter.toUpperCase()) {
-          spec.innerText = right;
-        } else {
-          if (letter === letter.toLowerCase()) {
-            low.innerText = right;
-          }
-          if (letter === letter.toUpperCase()) {
-            up.innerText = right;
-          }
-        }
+    function toCheck(x, y) {
+      if (x) {
+        return (y.innerText = right);
       }
     }
-    if (in1.length >= 10) {
-      long.innerText = right;
+
+    const ifLong = in1.length >= 10;
+    toCheck(ifLong, long);
+
+    for (let letter of in1) {
+      const ifNum = !isNaN(letter) && letter !== " ";
+      toCheck(ifNum, num);
+
+      const ifSpec = letter.toLowerCase() === letter.toUpperCase() && !ifNum;
+      toCheck(ifSpec, spec);
+
+      const ifLow = letter === letter.toLowerCase() && !ifNum && !ifSpec;
+      const ifUp = letter === letter.toUpperCase() && !ifNum && !ifSpec;
+      toCheck(ifLow, low);
+      toCheck(ifUp, up);
     }
   } else {
     equal.innerText = wrong;
@@ -66,25 +68,3 @@ function checkAll(e) {
 }
 
 document.querySelector("form").addEventListener("keyup", checkAll);
-
-/* if (letter === letter.toLowerCase()) {
-        low.innerText = right;
-      } else {
-        low.innerText = wrong;
-      }
-      const toCheck = (x) => (x ? right : wrong);
-
-
-      function toCheck(x) {
-      if (x) {
-        return right;
-      } else {
-        return wrong;
-      }
-    }
-    const ifLow = "letter === letter.toLowerCase()";
-    const ifUp = "letter === letter.toUpperCase()";
-    low.innerText = `${toCheck(ifLow)}`;
-    up.innerText = `${toCheck(ifUp)}`;
-       
-      */
