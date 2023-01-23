@@ -14,6 +14,8 @@ function toggle(event) {
   }
 }
 
+console.log(isNaN("true"));
+
 document.addEventListener("submit", toggle);
 
 //
@@ -21,6 +23,7 @@ const equal = document.querySelector("#equal");
 const low = document.querySelector("#low");
 const up = document.querySelector("#up");
 const num = document.querySelector("#num");
+const spec = document.querySelector("#spec");
 const long = document.querySelector("#long");
 
 const right = "✅";
@@ -34,14 +37,18 @@ function checkAll(e) {
     equal.innerText = right;
 
     for (let letter of in1) {
-      if (letter.toUpperCase() === letter.toLocaleLowerCase()) {
-        num.innerText = right; //Sonderzeichen :(
+      if (!isNaN(letter) && letter !== " ") {
+        num.innerText = right;
       } else {
-        if (letter === letter.toLowerCase()) {
-          low.innerText = right;
-        }
-        if (letter === letter.toUpperCase()) {
-          up.innerText = right;
+        if (letter.toLowerCase() === letter.toUpperCase()) {
+          spec.innerText = right;
+        } else {
+          if (letter === letter.toLowerCase()) {
+            low.innerText = right;
+          }
+          if (letter === letter.toUpperCase()) {
+            up.innerText = right;
+          }
         }
       }
     }
@@ -53,6 +60,7 @@ function checkAll(e) {
     low.innerText = wrong;
     up.innerText = wrong;
     num.innerText = wrong;
+    spec.innerText = wrong;
     long.innerText = wrong;
   }
 }
