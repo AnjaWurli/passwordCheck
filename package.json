@@ -1,0 +1,18 @@
+{
+  "name": "passwordcheck",
+  "version": "1.0.0",
+  "description": "You will build a password check app with HTML, CSS and JavaScript.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "serve ./src",
+    "e2e": "cypress open"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^12.5.1",
+    "serve": "^14.2.0"
+  }
+}
