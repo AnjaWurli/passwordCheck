@@ -60,6 +60,15 @@ describe("password Check", () => {
     cy.get("[data-cy='num']").should("have.text", "✅");
     cy.get("[data-cy='up']").should("have.text", "❌");
     cy.get("[data-cy='low']").should("have.text", "❌");
+    cy.get("[data-cy='spec']").should("have.text", "❌");
+  });
+  it("passwords contain special character", () => {
+    cy.get("[data-cy='input1']").type("-");
+    cy.get("[data-cy='input2']").type("-");
+    cy.get("[data-cy='num']").should("have.text", "❌");
+    cy.get("[data-cy='up']").should("have.text", "❌");
+    cy.get("[data-cy='low']").should("have.text", "❌");
+    cy.get("[data-cy='spec']").should("have.text", "✅");
   });
   it("passwords is minimum 10 characters long", () => {
     cy.get("[data-cy='input1']").type("1234567890");

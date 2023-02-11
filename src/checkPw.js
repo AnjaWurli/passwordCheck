@@ -1,3 +1,5 @@
+import { equalFn, longFn, numFn, specFn, lowFn, upFn } from "./checkWord.js";
+
 export function checkAll() {
   const input = document.querySelectorAll("input");
 
@@ -14,7 +16,7 @@ export function checkAll() {
   let in1 = input[0].value;
   let in2 = input[1].value;
 
-  if (in1 === in2 && in1.length !== 0) {
+  if (equalFn(in1, in2)) {
     equal.innerText = right;
 
     function toCheck(x, y) {
@@ -23,20 +25,13 @@ export function checkAll() {
       }
     }
 
-    const ifLong = in1.length >= 10;
-    toCheck(ifLong, long);
+    toCheck(longFn(in1), long);
 
     for (let letter of in1) {
-      const ifNum = !isNaN(letter) && letter !== " ";
-      toCheck(ifNum, num);
-
-      const ifSpec = letter.toLowerCase() === letter.toUpperCase() && !ifNum;
-      toCheck(ifSpec, spec);
-
-      const ifLow = letter === letter.toLowerCase() && !ifNum && !ifSpec;
-      const ifUp = letter === letter.toUpperCase() && !ifNum && !ifSpec;
-      toCheck(ifLow, low);
-      toCheck(ifUp, up);
+      toCheck(numFn(letter), num);
+      toCheck(specFn(letter), spec);
+      toCheck(lowFn(letter), low);
+      toCheck(upFn(letter), up);
     }
   } else {
     equal.innerText = wrong;
