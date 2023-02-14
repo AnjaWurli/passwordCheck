@@ -1,6 +1,6 @@
-import { togglePassword } from "./togglePw.js";
+import { init } from "./togglePw.js";
 
-document.addEventListener("submit", togglePassword);
+init();
 
 import { checkAll } from "./checkPw.js";
 

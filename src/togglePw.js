@@ -1,4 +1,4 @@
-export function togglePassword(event) {
+function togglePassword(event) {
   event.preventDefault();
 
   const input = document.querySelectorAll("input");
@@ -13,4 +13,8 @@ export function togglePassword(event) {
       but.innerText = "Show Passwords";
     }
   }
+}
+
+export function init() {
+  document.addEventListener("submit", togglePassword);
 }
