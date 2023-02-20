@@ -13,23 +13,22 @@
 
 </head>
 
-<body>
+<body id="app">
     <h1>Password Check</h1>
     <form>
-        <input data-cy="input1" type="password">
-        <input data-cy="input2" type="password">
-        <button data-cy="button">Show Passwords</button>
+        <input data-cy="input1" :type="passwordType[0].inputType" v-model="word1" @keyup="checkPassword">
+        <input data-cy="input2" :type="passwordType[0].inputType" v-model="word2" @keyup="checkPassword">
+        <button data-cy="button" @click.prevent="togglePassword">{{passwordType[0].buttonText}}</button>
     </form>
     <section>
-        <p>Passwords are equal <span data-cy="equal" id="equal">❌</span></p>
-        <p>Lower Case Letters <span data-cy="low" id="low">❌</span></p>
-        <p>Upper Case Letters <span data-cy="up" id="up">❌</span></p>
-        <p>Contains Numbers <span data-cy="num" id="num">❌</span></p>
-        <p>Contains Special Characters <span data-cy="spec" id="spec">❌</span></p>
-        <p>At least 10 characters long <span data-cy="long" id="long">❌</span></p>
+        <!--<p>Passwords are equal <span data-cy="equal" id="equal">❌</span></p>-->
+        <p v-for="check of checks">{{check.description}} <span :data-cy="check.id" :id="check.id">
+                {{check.check}}</span>
+        </p>
     </section>
 
-    <script type="module" src="script.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script type="module" src="scripts.js"></script>
 </body>
 
 </html>
